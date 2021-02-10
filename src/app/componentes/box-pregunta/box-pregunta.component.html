@@ -1,0 +1,35 @@
+
+
+<div class="container d-flex justify-content-center p-5" *ngFor="let pregunta of arrPreguntas">
+    <div class="row">
+
+        <div class="col-md-4 text-center">            
+            <div class="card">
+                <img [src]="pregunta.imagen" class="img-fluid" [alt]="pregunta.titulo">
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <p>{{pregunta.titulo}}</p>
+            <div class="texto-pregunta">
+                {{pregunta.texto}}
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="container" id="contenedor-respuestas">
+                <button class="btn btn-primary btn-lg btn-block pt-2" (click)="contestacion(pregunta.respuesta1, pregunta.respuestaCorrecta, pregunta.textoRespuesta)">{{pregunta.respuesta1}}</button>
+                <button class="btn btn-primary btn-lg btn-block pt-2" (click)="contestacion(pregunta.respuesta2, pregunta.respuestaCorrecta, pregunta.textoRespuesta)">{{pregunta.respuesta2}}</button>
+                <button class="btn btn-primary btn-lg btn-block pt-2" (click)="contestacion(pregunta.respuesta3, pregunta.respuestaCorrecta, pregunta.textoRespuesta)">{{pregunta.respuesta3}}</button>
+            </div>
+
+            
+            <p class="text-success"  *ngIf="pregunta.respuesta1 == pregunta.respuestaCorrecta">
+                Correcto!: {{ pregunta.respuesta1 }}
+            </p>
+        </div>
+
+    </div>
+</div>
+
+
