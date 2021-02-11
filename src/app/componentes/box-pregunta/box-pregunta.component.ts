@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 //servicio
 import {PreguntaService, Pregunta} from 'src/app/servicios/pregunta.service'
+import {PreguntaLevel2Service, PreguntaDificil} from 'src/app/servicios/pregunta-level-2.service'
 
 @Component({
   selector: 'app-box-pregunta',
@@ -11,12 +12,18 @@ import {PreguntaService, Pregunta} from 'src/app/servicios/pregunta.service'
 export class BoxPreguntaComponent implements OnInit {
 
   arrPreguntas: Pregunta[] = [];
+  arrPreguntasDificiles: PreguntaDificil[] = [];
 
-  constructor(private preguntaServicio: PreguntaService) { }
+  constructor(private preguntaServicio: PreguntaService, private preguntaServicioDificil: PreguntaLevel2Service) { }
 
   ngOnInit(): void {
     this.arrPreguntas = this.preguntaServicio.getPreguntas();
+    this.arrPreguntasDificiles = this.preguntaServicioDificil.getPreguntas();
     //console.log(this.arrPreguntas);
+  }
+
+  getPreguntaServicio(){
+    return this.preguntaServicio;
   }
 
   contestacion(respuestaElegida: String, respuestaCorrecta: String, textoRespuesta: String):void {
@@ -62,7 +69,14 @@ export class BoxPreguntaComponent implements OnInit {
     }
 
     if(this.preguntaServicio.getContadorRespondidas() >= 3){
-      alert("Finalizo la trivia, respondiste correctamente: " + this.preguntaServicio.getContador());
+      if(this.preguntaServicio.contador >= 2){
+        alert("Finalizo la trivia, pasaste de nivel pués respondiste correctamente: " + this.preguntaServicio.getContador());
+        document.getElementById("bloque-preguntas-faciles").style.display = 'none';
+        
+      } else {
+        alert("Finalizo la trivia, NO pasaste de nivel pués respondiste correctamente: " + this.preguntaServicio.getContador() + "\nIntentalo de nuevo!");
+        location.reload(); //Se actualiza la página
+      }
     }
     
   }
