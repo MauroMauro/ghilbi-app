@@ -8,6 +8,8 @@ import { BoxPreguntaComponent } from './componentes/box-pregunta/box-pregunta.co
 
 //Servicios
 import { PreguntaService } from './servicios/pregunta.service'
+import { PreguntaLevel2Service } from './servicios/pregunta-level-2.service'
+
 
 @NgModule({
   declarations: [
@@ -19,7 +21,7 @@ import { PreguntaService } from './servicios/pregunta.service'
   imports: [
     BrowserModule
   ],
-  providers: [PreguntaService],
+  providers: [PreguntaService, PreguntaLevel2Service],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
