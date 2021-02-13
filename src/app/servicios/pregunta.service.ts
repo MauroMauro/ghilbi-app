@@ -62,12 +62,21 @@ export class PreguntaService {
     return this.contador;
   }
 
+  resetContadores(){
+    this.contadorDeRespondidas = 0;
+    this.contador = 0;
+  }
+
   upContadorRespondidas(){
     this.contadorDeRespondidas ++;
   }
 
   getContadorRespondidas(){ 
     return this.contadorDeRespondidas;
+  }
+
+  aprobado(){
+    return this.contador >= 2;
   }
 }
 
