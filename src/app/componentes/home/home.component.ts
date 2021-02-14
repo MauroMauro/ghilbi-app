@@ -12,4 +12,9 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  recargar(){
+    location.reload(); //Se actualiza la página
+    location.hash = "#" + "inicio";
+  }
+
 }

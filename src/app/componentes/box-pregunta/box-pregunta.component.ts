@@ -15,6 +15,7 @@ export class BoxPreguntaComponent implements OnInit {
   arrPreguntas: Pregunta[] = [];
   arrPreguntasDificiles: PreguntaDificil[] = [];
   arrPreguntasMasDificiles: PreguntaMasDificil[] = [];
+  mostrarPregunta: boolean = true;
 
   constructor(private preguntaServicio: PreguntaService, private preguntaServicioDificil: PreguntaLevel2Service, private preguntaServicioMasDificil: PreguntaLevel3Service) { }
 
@@ -24,6 +25,17 @@ export class BoxPreguntaComponent implements OnInit {
     this.arrPreguntasMasDificiles = this.preguntaServicioMasDificil.getPreguntas();
     
   }
+
+  getMostrarPregunta(){
+    return this.mostrarPregunta;
+  }
+
+  setMostrarPregunta(){
+    if(this.mostrarPregunta){
+      this.mostrarPregunta = false;
+    }else {this.mostrarPregunta = true;}
+  }
+
 
   getPreguntaServicio(){ //este método se usa en la plantilla en el ngIf
     return this.preguntaServicio;
@@ -40,12 +52,11 @@ export class BoxPreguntaComponent implements OnInit {
     const contenedorResultadoNeg = document.createElement("div");
 
     contenedorResultadoPos.innerHTML =`
-    <div class="card border border-success">
+    <div class="card text-white bg-success" data-aos="zoom-in" style="font-family: 'Bellota'" >
     <div class="card-header">
-      <b class="text-success">Respuesta Correcta!</b>
+      <b class="text-white ">Respuesta Correcta!</b>
     </div>
-    <div class="card-body">
-        
+    <div class="card-body">        
         <p class="texto-respuesta">
             ${textoRespuesta}
         </p>
@@ -54,9 +65,9 @@ export class BoxPreguntaComponent implements OnInit {
     `;
 
     contenedorResultadoNeg.innerHTML =`
-    <div class="card border border-danger">
+    <div class="card text-white bg-danger" data-aos="zoom-in" style="font-family: 'Bellota'" >
     <div class="card-header">
-      <b class="text-danger">Respuesta Incorrecta</b>
+      <b class="text-white ">Respuesta Incorrecta</b>
     </div>
         <div class="card-body">
             <p class="texto-respuesta">
@@ -106,10 +117,9 @@ export class BoxPreguntaComponent implements OnInit {
 
       
       if(this.preguntaServicioDificil.getContadorRespondidas() <= 0){
-        //Solo se mostrará este alert si todavia no se "entró" al nivel de difíciles
+        location.hash = "#" + "inicio";
+        this.showMessage("Excelente! Pasaste al segundo nivel!", "success");
         
-        location.hash = "#" + "bloque-preguntas-dificiles";
-        this.showMessage("Pasaste al segundo nivel!", "success");
       } 
        
 
@@ -119,34 +129,30 @@ export class BoxPreguntaComponent implements OnInit {
         document.getElementById("bloque-preguntas-dificiles").style.display = 'none';
 
         if(this.preguntaServicioMasDificil.getContadorRespondidas() <= 0){
-          alert("Pasaste al nivel 3 pués respondiste correctamente: " + this.preguntaServicioDificil.getContador()); 
           
-          location.hash = "#" + "bloque-preguntas-mas-dificiles";
-          this.showMessage("Pasaste al ultimo nivel", "success");
+          location.hash = "#" + "inicio";
+          this.showMessage("Super! Pasaste al ultimo nivel", "success");
         }
            
   
       } else if(!this.preguntaServicioDificil.aprobado() && this.preguntaServicioDificil.getContadorRespondidas() >= 3){
-          alert("Finalizo la trivia, NO pasaste de nivel pués respondiste correctamente: " + this.preguntaServicioDificil.getContador() + "\nIntentalo de nuevo!");
           this.showMessage("Respondiste mal la mayoría de las preguntas, regresas al principio", "danger");
           this.preguntaServicioDificil.resetContadores();
           location.reload(); //Se actualiza la página, perdió el 2do nivel
-          location.hash = "#" + "bloque-preguntas";
+          location.hash = "#" + "inicio";
           
       } 
 
       if(this.preguntaServicioMasDificil.aprobado() && this.preguntaServicioMasDificil.getContadorRespondidas() >= 3){
         document.getElementById("bloque-preguntas-mas-dificiles").style.display = 'none';
-        alert("Ganaste pués respondiste correctamente: " + this.preguntaServicioMasDificil.getContador()); 
-        this.showMessage("Respondiste bien la mayoría de las preguntas, GANASTE!", "success");
+        this.showMessage("Respondiste bien la mayoría de las preguntas, sos un auténtico <b>Ghibli-fan!</b>", "warning");
    
   
       } else if(!this.preguntaServicioMasDificil.aprobado() && this.preguntaServicioMasDificil.getContadorRespondidas() >= 3){
           this.showMessage("Respondiste mal la mayoría de las preguntas, regresas al principio", "danger");
-          alert("Finalizo la trivia, NO pasaste de nivel pués respondiste correctamente: " + this.preguntaServicioMasDificil.getContador() + "\nIntentalo de nuevo!");
           this.preguntaServicioMasDificil.resetContadores();
           location.reload(); //Se actualiza la página, perdió el 3er nivel
-          location.hash = "#" + "bloque-preguntas-dificiles";
+          location.hash = "#" + "inicio";
           
       } 
 
@@ -155,7 +161,7 @@ export class BoxPreguntaComponent implements OnInit {
         this.showMessage("Respondiste mal la mayoría de las preguntas, regresas al principio", "danger");
         this.preguntaServicio.resetContadores();
         location.reload(); //Se actualiza la página
-        location.hash = "#" + "bloque-preguntas";
+        location.hash = "#" + "inicio";
     }
    
 
@@ -165,16 +171,36 @@ export class BoxPreguntaComponent implements OnInit {
 
   showMessage(message, cssClass) {
     
+    var imagen;
+
+    if(cssClass == 'warning'){
+      imagen = 'assets/img/arbol-alert.svg';
+    }else if (cssClass == 'danger'){
+      imagen = 'assets/img/kodama-alert.svg';
+    }else if (cssClass == 'success'){
+      imagen = 'assets/img/totoro-alert.svg';
+    }
+
+
 
     document.getElementById("bloque-mensajes").innerHTML = `
 
-        <div >
-          <div class="card bg-${cssClass} text-white p-4 text-center">
+        <div data-aos="zoom-in" >
+          <div class="card bg-${cssClass} p-4 text-center">
 
-            <div class="card-body">
-                <div class="display-4">
+            <div class="card-body text-uppercase">
+                <div class="h2">
                     ${message}
                 </div>
+
+                <div class="card border border-0 bg-${cssClass}" >  
+                  <div class="card-body">
+                  <img class="img-fluid" src=" ${imagen}" alt=""> 
+                  </div>
+                                       
+                </div>
+
+
             </div>
 
           </div>
@@ -189,7 +215,7 @@ export class BoxPreguntaComponent implements OnInit {
     // Remove the Message after 3 seconds
       setTimeout(function () {
         document.getElementById("bloque-mensajes").style.display= ("none");
-      }, 3000);
+      }, 5000);
   }
 
  

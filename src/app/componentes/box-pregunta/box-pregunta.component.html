@@ -1,5 +1,9 @@
 
-<div id="bloque-mensajes" class="container-fluid pt-4">
+<div id="inicio">
+
+</div>
+
+<div id="bloque-mensajes" class="container-fluid pt-4" data-aos="zoom-in" data-aos-duration="2000">
 
 </div>
 
@@ -7,6 +11,8 @@
 
     <div class="container d-flex justify-content-center p-5" *ngFor="let pregunta of arrPreguntas">
         <div class="row">
+
+            
     
             <div class="col-md-4 text-center">            
                 <div class="card">
@@ -15,8 +21,9 @@
             </div>
     
             <div class="col-md-4">
-                <p>{{pregunta.titulo}}</p>
-                <div class="texto-pregunta">
+                <h3 class="text-muted text-uppercase text-center">{{pregunta.titulo}}</h3> 
+                <hr class="my-4">
+                <div class="texto-pregunta lead">
                     {{pregunta.texto}}
                 </div>
             </div>
@@ -27,14 +34,18 @@
                     <button class="btn btn-primary btn-lg btn-block pt-2" (click)="contestacion(pregunta.respuesta2, pregunta.respuestaCorrecta, pregunta.textoRespuesta)">{{pregunta.respuesta2}}</button>
                     <button class="btn btn-primary btn-lg btn-block pt-2" (click)="contestacion(pregunta.respuesta3, pregunta.respuestaCorrecta, pregunta.textoRespuesta)">{{pregunta.respuesta3}}</button>
                 </div>
-    
                 
-                <p class="text-success"  *ngIf="pregunta.respuesta1 == pregunta.respuestaCorrecta">
-                    Correcto!: {{ pregunta.respuesta1 }}
-                </p>
+                
+
+                
+
+                
             </div>
+
+            
     
         </div>
+        
     </div>
     
     
@@ -53,8 +64,9 @@
             </div>
     
             <div class="col-md-4">
-                <p>{{pregunta.titulo}}</p>
-                <div class="texto-pregunta">
+                <h3 class="text-muted text-uppercase text-center">{{pregunta.titulo}}</h3> 
+                <hr class="my-4">
+                <div class="texto-pregunta lead">
                     {{pregunta.texto}}
                 </div>
             </div>
@@ -66,10 +78,6 @@
                     <button class="btn btn-primary btn-lg btn-block pt-2" (click)="contestacion(pregunta.respuesta3, pregunta.respuestaCorrecta, pregunta.textoRespuesta)">{{pregunta.respuesta3}}</button>
                 </div>
     
-                
-                <p class="text-success"  *ngIf="pregunta.respuesta1 == pregunta.respuestaCorrecta">
-                    Correcto!: {{ pregunta.respuesta1 }}
-                </p>
             </div>
     
         </div>
@@ -90,8 +98,9 @@
             </div>
     
             <div class="col-md-4">
-                <p>{{pregunta.titulo}}</p>
-                <div class="texto-pregunta">
+                <h3 class="text-muted text-uppercase text-center">{{pregunta.titulo}}</h3> 
+                <hr class="my-4">
+                <div class="texto-pregunta lead">
                     {{pregunta.texto}}
                 </div>
             </div>
@@ -103,10 +112,6 @@
                     <button class="btn btn-primary btn-lg btn-block pt-2" (click)="contestacion(pregunta.respuesta3, pregunta.respuestaCorrecta, pregunta.textoRespuesta)">{{pregunta.respuesta3}}</button>
                 </div>
     
-                
-                <p class="text-success"  *ngIf="pregunta.respuesta1 == pregunta.respuestaCorrecta">
-                    Correcto!: {{ pregunta.respuesta1 }}
-                </p>
             </div>
     
         </div>
@@ -114,5 +119,4 @@
     
     
 </div>
-
 

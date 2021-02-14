@@ -1,6 +1,39 @@
+.texto-pregunta{
+  font-family: 'Bellota';
+ }
+ 
+ #bloque-mensajes {
+  font-family:  'Architects Daughter';
+ }
+
+
+
+
+
 #bloque-mensajes {
     position: fixed;
     top: 0;
     z-index: 1;
    }
    
+
+
+.btn-primary {
+    /* color: #fff; */
+    /* background-color: #007bff; */
+    /* border-color: #007bff; */
+    color: #575555;
+    background-color: #ffb300;
+    border-color: #ffb300;
+  }
+
+  .btn-primary:hover{
+    /* color: #fff; */
+    /* background-color: #007bff; */
+    /* border-color: #007bff; */
+    color: #302e2e;
+    background-color: #db8d34;
+    border-color: #d3970a;
+  }
+
+ 
