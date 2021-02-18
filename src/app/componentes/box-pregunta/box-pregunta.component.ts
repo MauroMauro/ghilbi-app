@@ -81,15 +81,15 @@ export class BoxPreguntaComponent implements OnInit {
     if(respuestaElegida == respuestaCorrecta){     
       contenedorPreguntas?.replaceWith(contenedorResultadoPos);
 
-      if(this.preguntaServicio.getContadorRespondidas() < 3){
+      if(this.preguntaServicio.getContadorRespondidas() < 5){
         this.preguntaServicio.upContador();
         this.preguntaServicio.upContadorRespondidas();        
       } else {
-        if(this.preguntaServicioDificil.getContadorRespondidas() < 3){
+        if(this.preguntaServicioDificil.getContadorRespondidas() < 5){
           this.preguntaServicioDificil.upContador();
           this.preguntaServicioDificil.upContadorRespondidas();
         } else {
-          if(this.preguntaServicioMasDificil.getContadorRespondidas() < 3){
+          if(this.preguntaServicioMasDificil.getContadorRespondidas() < 5){
             this.preguntaServicioMasDificil.upContador();
             this.preguntaServicioMasDificil.upContadorRespondidas();
           }
@@ -100,11 +100,11 @@ export class BoxPreguntaComponent implements OnInit {
     }else{
       contenedorPreguntas?.replaceWith(contenedorResultadoNeg);
 
-      if(this.preguntaServicio.getContadorRespondidas() < 3){
+      if(this.preguntaServicio.getContadorRespondidas() < 5){
         this.preguntaServicio.upContadorRespondidas();
-      } else if (this.preguntaServicioDificil.getContadorRespondidas() < 3){
+      } else if (this.preguntaServicioDificil.getContadorRespondidas() < 5){
           this.preguntaServicioDificil.upContadorRespondidas();
-      } else if (this.preguntaServicioMasDificil.getContadorRespondidas() < 3){
+      } else if (this.preguntaServicioMasDificil.getContadorRespondidas() < 5){
         this.preguntaServicioMasDificil.upContadorRespondidas();
     }
       
@@ -112,7 +112,7 @@ export class BoxPreguntaComponent implements OnInit {
 
 
     //Acciones sobre el DOM
-    if(this.preguntaServicio.aprobado() && this.preguntaServicio.getContadorRespondidas() >= 3){
+    if(this.preguntaServicio.aprobado() && this.preguntaServicio.getContadorRespondidas() >= 5){
       document.getElementById("bloque-preguntas-faciles").style.display = 'none';
 
       
@@ -125,7 +125,7 @@ export class BoxPreguntaComponent implements OnInit {
 
 
 
-      if(this.preguntaServicioDificil.aprobado() && this.preguntaServicioDificil.getContadorRespondidas() >= 3){
+      if(this.preguntaServicioDificil.aprobado() && this.preguntaServicioDificil.getContadorRespondidas() >= 5){
         document.getElementById("bloque-preguntas-dificiles").style.display = 'none';
 
         if(this.preguntaServicioMasDificil.getContadorRespondidas() <= 0){
@@ -135,7 +135,7 @@ export class BoxPreguntaComponent implements OnInit {
         }
            
   
-      } else if(!this.preguntaServicioDificil.aprobado() && this.preguntaServicioDificil.getContadorRespondidas() >= 3){
+      } else if(!this.preguntaServicioDificil.aprobado() && this.preguntaServicioDificil.getContadorRespondidas() >= 5){
           this.showMessage("Respondiste mal la mayoría de las preguntas, regresas al principio", "danger");
           this.preguntaServicioDificil.resetContadores();
           location.reload(); //Se actualiza la página, perdió el 2do nivel
@@ -143,21 +143,21 @@ export class BoxPreguntaComponent implements OnInit {
           
       } 
 
-      if(this.preguntaServicioMasDificil.aprobado() && this.preguntaServicioMasDificil.getContadorRespondidas() >= 3){
+      if(this.preguntaServicioMasDificil.aprobado() && this.preguntaServicioMasDificil.getContadorRespondidas() >= 5){
         document.getElementById("bloque-preguntas-mas-dificiles").style.display = 'none';
         this.showMessage("Respondiste bien la mayoría de las preguntas, sos un auténtico <b>Ghibli-fan!</b>", "warning");
    
   
-      } else if(!this.preguntaServicioMasDificil.aprobado() && this.preguntaServicioMasDificil.getContadorRespondidas() >= 3){
+      } else if(!this.preguntaServicioMasDificil.aprobado() && this.preguntaServicioMasDificil.getContadorRespondidas() >= 5){
           this.showMessage("Respondiste mal la mayoría de las preguntas, regresas al principio", "danger");
           this.preguntaServicioMasDificil.resetContadores();
-          location.reload(); //Se actualiza la página, perdió el 3er nivel
+          location.reload(); //Se actualiza la página, perdió el 5er nivel
           location.hash = "#" + "inicio";
           
       } 
 
 
-    } else if(!this.preguntaServicio.aprobado() && this.preguntaServicio.getContadorRespondidas() >= 3){
+    } else if(!this.preguntaServicio.aprobado() && this.preguntaServicio.getContadorRespondidas() >= 5){
         this.showMessage("Respondiste mal la mayoría de las preguntas, regresas al principio", "danger");
         this.preguntaServicio.resetContadores();
         location.reload(); //Se actualiza la página
@@ -212,7 +212,7 @@ export class BoxPreguntaComponent implements OnInit {
 
     
 
-    // Remove the Message after 3 seconds
+    // Remove the Message after 5 seconds
       setTimeout(function () {
         document.getElementById("bloque-mensajes").style.display= ("none");
       }, 5000);

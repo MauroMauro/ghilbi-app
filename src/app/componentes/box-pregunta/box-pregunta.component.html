@@ -26,19 +26,27 @@
                 <div class="texto-pregunta lead">
                     {{pregunta.texto}}
                 </div>
+
+
+                
             </div>
     
             <div class="col-md-4">
-                <div class="container" id="contenedor-respuestas">
+                <div class="container pb-4" id="contenedor-respuestas">
                     <button class="btn btn-primary btn-lg btn-block pt-2" (click)="contestacion(pregunta.respuesta1, pregunta.respuestaCorrecta, pregunta.textoRespuesta)">{{pregunta.respuesta1}}</button>
                     <button class="btn btn-primary btn-lg btn-block pt-2" (click)="contestacion(pregunta.respuesta2, pregunta.respuestaCorrecta, pregunta.textoRespuesta)">{{pregunta.respuesta2}}</button>
                     <button class="btn btn-primary btn-lg btn-block pt-2" (click)="contestacion(pregunta.respuesta3, pregunta.respuestaCorrecta, pregunta.textoRespuesta)">{{pregunta.respuesta3}}</button>
                 </div>
-                
-                
 
-                
-
+                <!-- Datos de la API -->
+                <div class="card text-muted font-italic font-weight-light border-warning  text-light m-3 p-3 pt-4">
+                    <div class="texto-data-peli">
+                        <h5>Data de la película</h5> <hr>
+                        <p><b>Título en inglés: </b>  {{pregunta.nombrePeli}}  </p>
+                        <p><b>Director: </b> {{pregunta.director}}</p>
+                        <p><b>Año de estreno: </b> {{pregunta.anio}} </p>
+                    </div>
+                </div>              
                 
             </div>
 
@@ -52,7 +60,7 @@
     
 </div>
 
-<div *ngIf="getPreguntaServicio().contador >= 2" id="bloque-preguntas-dificiles">
+<div *ngIf="getPreguntaServicio().contador >= 4" id="bloque-preguntas-dificiles">
 
     <div class="container d-flex justify-content-center p-5"  *ngFor="let pregunta of arrPreguntasDificiles">
         <div class="row">
@@ -72,11 +80,21 @@
             </div>
     
             <div class="col-md-4">
-                <div class="container" id="contenedor-respuestas">
+                <div class="container pb-4" id="contenedor-respuestas">
                     <button class="btn btn-primary btn-lg btn-block pt-2" (click)="contestacion(pregunta.respuesta1, pregunta.respuestaCorrecta, pregunta.textoRespuesta)">{{pregunta.respuesta1}}</button>
                     <button class="btn btn-primary btn-lg btn-block pt-2" (click)="contestacion(pregunta.respuesta2, pregunta.respuestaCorrecta, pregunta.textoRespuesta)">{{pregunta.respuesta2}}</button>
                     <button class="btn btn-primary btn-lg btn-block pt-2" (click)="contestacion(pregunta.respuesta3, pregunta.respuestaCorrecta, pregunta.textoRespuesta)">{{pregunta.respuesta3}}</button>
                 </div>
+
+                <!-- Datos de la API -->
+                <div class="card text-muted font-italic font-weight-light border-warning  text-light m-3 p-3 pt-4">
+                    <div class="texto-data-peli">
+                        <h5>Data de la película</h5> <hr>
+                        <p><b>Título en inglés: </b>  {{pregunta.nombrePeli}}  </p>
+                        <p><b>Director: </b> {{pregunta.director}}</p>
+                        <p><b>Año de estreno: </b> {{pregunta.anio}} </p>
+                    </div>
+                </div> 
     
             </div>
     
@@ -86,7 +104,7 @@
     
 </div>
 
-<div *ngIf="getPreguntaServicioDificil().contador >= 2" id="bloque-preguntas-mas-dificiles">
+<div *ngIf="getPreguntaServicioDificil().contador >= 4" id="bloque-preguntas-mas-dificiles">
 
     <div class="container d-flex justify-content-center p-5"  *ngFor="let pregunta of arrPreguntasMasDificiles">
         <div class="row">
@@ -106,11 +124,21 @@
             </div>
     
             <div class="col-md-4">
-                <div class="container" id="contenedor-respuestas">
+                <div class="container pb-4" id="contenedor-respuestas">
                     <button class="btn btn-primary btn-lg btn-block pt-2" (click)="contestacion(pregunta.respuesta1, pregunta.respuestaCorrecta, pregunta.textoRespuesta)">{{pregunta.respuesta1}}</button>
                     <button class="btn btn-primary btn-lg btn-block pt-2" (click)="contestacion(pregunta.respuesta2, pregunta.respuestaCorrecta, pregunta.textoRespuesta)">{{pregunta.respuesta2}}</button>
                     <button class="btn btn-primary btn-lg btn-block pt-2" (click)="contestacion(pregunta.respuesta3, pregunta.respuestaCorrecta, pregunta.textoRespuesta)">{{pregunta.respuesta3}}</button>
                 </div>
+
+                <!-- Datos de la API -->
+                <div class="card text-muted font-italic font-weight-light border-warning  text-light m-3 p-3 pt-4">
+                    <div class="texto-data-peli">
+                        <h5>Data de la película</h5> <hr>
+                        <p><b>Título en inglés: </b>  {{pregunta.nombrePeli}}  </p>
+                        <p><b>Director: </b> {{pregunta.director}}</p>
+                        <p><b>Año de estreno: </b> {{pregunta.anio}} </p>
+                    </div>
+                </div> 
     
             </div>
     
