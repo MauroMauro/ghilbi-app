@@ -2,7 +2,10 @@
 
 Juego de preguntas y respuestas con temática del universo de películas de estudios Ghibli.
 
-Segmento: 
+### Se puede jugar en: 🐲
+https://mauromauro.github.io/ghilbi-app/
+
+**Segmento: **
 ##🎮 Juegos
 
 
