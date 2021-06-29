@@ -2,11 +2,10 @@
 
 Juego de preguntas y respuestas con temática del universo de películas de estudios Ghibli.
 
-### Se puede jugar en: 🐲
+### Se puede jugar en: 🎮
 https://mauromauro.github.io/ghilbi-app/
 
-**Segmento: **
-##🎮 Juegos
+
 
 
 ### Características 📋
@@ -21,7 +20,7 @@ Sobre el proyecto
 
 _La aplicación fue contruída sobre el framework de Angular. 
 Para la obtención de información sobre las películas actualizada se consumen datos de la API pública oficial de Studios Ghibli. 
-El resultado responsive se logró facilmente usado la librería Bootstrap.
+El resultado responsive se logró usando la librería Bootstrap.
 El proyecto se despliega con GitHub Pages_
 
 
